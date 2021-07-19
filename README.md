@@ -5,6 +5,14 @@ vite 路由处理，支持vue和react路由配置。
 
 所以，为了保持目录结构一致，路由文件约定在src/config目录下。
 
+
+## 安装
+```
+yarn add -D @tool-developer/vite-render-routes
+```
+使用的是rollup插件，并非vite插件，命名未按照相关规范。
+
+
 ## 目录结构约定：
 ```
 src/
