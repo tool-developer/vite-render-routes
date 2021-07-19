@@ -103,6 +103,19 @@ index.html
 <script type="module" src="/src/.wo/main.ts"></script>
 ```
 
+## 安装依赖
+react需安装依赖：
+```
+yarn add react-dom react-router-dom react-router-config
+```
+vue需安装依赖：
+```
+yarn add vue-router 
+```
+(可选)
+```
+yarn add element-plus vue-i18n
+```
 
 ## 相关说明
 src/.wo目录下，除了生成route.config.ts文件外，还有main.ts和router.ts文件。
