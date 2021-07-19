@@ -77,7 +77,6 @@ export default defineConfig({
     })
   ]
 })
-
 ```
 ### Vue配置：
 
