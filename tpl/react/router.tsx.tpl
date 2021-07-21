@@ -1,11 +1,24 @@
 import React from 'react';
-import {BrowserRouter} from 'react-router-dom';
-import { renderRoutes  } from "react-router-config";
+import {BrowserRouter,Link} from 'react-router-dom';
+import renderRoutes from "./renderRoutes";
 //
 import routes from './route.config';
 //
-export default ()=>{
+import {
+  createBrowserHistory,
+  // createHashHistory,
+  // createMemoryHistory,
+} from 'history-with-query';
 
+//
+export const history = createBrowserHistory({});
+//
+export {
+	Link
+}
+//
+export default ()=>{
+	//
 	return (	
 		<BrowserRouter>
 			{renderRoutes(routes as any)}

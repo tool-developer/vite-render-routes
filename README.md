@@ -16,6 +16,7 @@ yarn add -D @tool-developer/vite-render-routes
 ## 目录结构约定：
 ```
 src/
+  app.ts
   config/
       route.config.ts
   pages/
@@ -95,6 +96,7 @@ export default defineConfig({
   ]
 })
 ```
+
 ### 配置参数
 | 参数	| 说明 | 
 | :-- | :-- | 
@@ -102,12 +104,42 @@ export default defineConfig({
 | suffix	| 文件后缀，如果路由配置有该参数，不需要传递 | 
 | src	| 源文件目录，默认为./src | 
 | type	| 路由类型，默认react，目前仅支持vue和react | 
+| mountRootId	| index.html根节点id，默认为app | 
 
 
 ## 调整入口引用
 index.html
 ```
 <script type="module" src="/src/.wo/main.ts"></script>
+```
+## app.ts处理
+### React app.ts
+```
+const app = {};
+
+//
+
+export default app;
+```
+### Vue app.ts
+可以通过app.ts注入更多app.use处理
+```
+import store from "./store";
+
+import ElementPlus from "element-plus"
+import "element-plus/lib/theme-chalk/index.css"
+
+import "./assets/css/setting.css"
+import "./assets/css/global.css"
+
+import { i18n } from './i18n';
+
+export default (app)=>{
+	//
+	app.use(store);
+	app.use(ElementPlus, { size: "mini", i18n: i18n.global.t });
+	app.use(i18n);
+}
 ```
 
 ## 安装依赖
@@ -118,10 +150,6 @@ yarn add react-dom react-router-dom react-router-config
 vue需安装依赖：
 ```
 yarn add vue-router 
-```
-(可选)
-```
-yarn add element-plus vue-i18n
 ```
 
 ## 相关说明

@@ -17,7 +17,10 @@ export default ({routes,suffix,type})=>{
   const handle = ({...route})=>{
     const {routes,exact,component} = route;
     // 默认exact设置为true
-    route.exact = exact !== undefined ? exact : true;
+    if(!route.routes){
+      //
+      route.exact = exact !== undefined ? exact : true;
+    }
     //
     if(typeof component === 'string'){
       let name = suffix ? `${component}${suffix}` : component;

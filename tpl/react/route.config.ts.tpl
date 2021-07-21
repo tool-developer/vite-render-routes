@@ -1,5 +1,5 @@
 import {RouteConfig,RouteConfigComponentProps} from 'react-router-config'
-
+//
 type globEagerType = (pattern: string) => Record<
     string,
     {
@@ -11,8 +11,8 @@ type globEagerType = (pattern: string) => Record<
 interface RouteConfigExt extends Omit<RouteConfig,"component">{
   component?: React.ComponentType<RouteConfigComponentProps<any>> | React.ComponentType | globEagerType | undefined;  
 };
-
+//
 const routes:RouteConfigExt = {{{routes}}}
 
-
+//
 export default routes;

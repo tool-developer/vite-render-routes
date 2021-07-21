@@ -8,7 +8,8 @@ const tplFileName = {
   react:{
     routeConfig:'route.config.ts',
     main:'main.tsx',
-    router:'router.tsx'
+    router:'router.tsx',
+    renderRoutes:'renderRoutes.tsx'
   },
   vue:{
     routeConfig:'route.config.ts',
@@ -33,13 +34,15 @@ const generate = ({dir,type,name,data = {}}) => {
 const renderRoutes = (options) => {
   //
   const {routes,suffix} = options;
-  let {src,type} = options;
+  let {src,type,mountRootId} = options;
   //
   type = type || 'react';
+  mountRootId = (mountRootId || 'app').replace(/^#/,'');// remove #
   //
   src = src || `./src`;
   src = src.replace(/\/$/,'');
   const woDir = src + '/.wo';
+  const appFile = src + '/app.ts';
   //
   if(!fs.existsSync(woDir)){
     fs.mkdirSync(woDir);
@@ -53,7 +56,9 @@ const renderRoutes = (options) => {
       const result = handle({routes,suffix,type});
       //
       typeFiles['data'] = {
-        routes:`${JSON.stringify(result,null,2)}`.replace(/("component":\s)"([^"]+)"/g,"$1$2")
+        routes:`${JSON.stringify(result,null,2)}`.replace(/("component":\s)"([^"]+)"/g,"$1$2"),
+        appFileExisted:fs.existsSync(appFile),
+        mountRootId
       }
       //
       Object.keys(typeFiles).forEach((name)=>{

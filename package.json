@@ -1,12 +1,12 @@
 {
   "name": "@tool-developer/vite-render-routes",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "vite routes render handle",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup -c",
-    "prepublish":"npm run build"
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
     "vite-routes",
     "vite-render-routes"
   ],
-  "author": "tool-developer",
+  "author": "@tool-developer",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tool-developer/vite-render-routes/issues"
@@ -28,6 +28,7 @@
     "access": "public"
   },
   "dependencies": {
+    "history-with-query": "^4.10.4",
     "mustache": "^4.2.0",
     "rollup": "^2.53.2"
   }
