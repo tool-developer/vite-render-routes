@@ -8,7 +8,7 @@ type globEagerType = (pattern: string) => Record<
   >;
 
 // 改写component
-interface RouteConfigExt extends Omit<RouteConfig,"component">{
+export interface RouteConfigExt extends Omit<RouteConfig,"component">{
   component?: React.ComponentType<RouteConfigComponentProps<any>> | React.ComponentType | globEagerType | undefined;  
 };
 //
