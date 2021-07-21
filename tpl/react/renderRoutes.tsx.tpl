@@ -1,23 +1,25 @@
 import React from 'react';
 import {Switch,Route,Redirect} from 'react-router-dom';
+import {RouteProps} from 'react-router';
+import {RouteConfigExt} from './route.config'
 //
-const RenderRoute = ({ path, exact, strict, render, location, sensitive, ...rest }) => (
+const RenderRoute:any = ({ path, exact, strict, render, location, sensitive, ...rest }:RouteProps) => (
   <Route
     path={path}
     exact={exact}
     strict={strict}
     location={location}
     sensitive={sensitive}
-    render={props => render({ ...props, ...rest })}
+    render={props => render && render({ ...props, ...rest })}
   />
 );
 
-export default function renderRoutes(routes,extraProps={},switchProps={}){
+export default function renderRoutes(routes:RouteConfigExt,extraProps={},switchProps={}){
   //
   return routes ? (
     <Switch {...switchProps}>
       {
-        routes.map((route,i) => {
+        routes.map((route:RouteConfigExt,i:number) => {
           if(route.redirect){
             //
             return (
@@ -38,7 +40,7 @@ export default function renderRoutes(routes,extraProps={},switchProps={}){
               exact={route.exact}
               strict={route.strict}
               sensitive={route.sensitive}
-              render={props => {
+              render={(props:any) => {
                 //
                 const childRoutes = renderRoutes(route.routes, extraProps, {
                   location: props.location,
@@ -51,7 +53,7 @@ export default function renderRoutes(routes,extraProps={},switchProps={}){
                 //
                 if(route.component){
                   //
-                  let { component: Component } = route;
+                  let { component: Component }:any = route;
                   //
                   return (
                     <Component {...props} {...extraProps} route={route}>
