@@ -28,8 +28,9 @@
     "access": "public"
   },
   "dependencies": {
-    "history-with-query": "^4.10.4",
-    "mustache": "^4.2.0",
-    "rollup": "^2.53.2"
+    "mustache": "^4.2.0"
+  },
+  "devDependencies": {
+    "rollup": "^2.53.3"
   }
 }

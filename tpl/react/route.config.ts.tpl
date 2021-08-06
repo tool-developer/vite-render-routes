@@ -12,7 +12,7 @@ export interface RouteConfigExt extends Omit<RouteConfig,"component">{
   component?: React.ComponentType<RouteConfigComponentProps<any>> | React.ComponentType | globEagerType | undefined;  
 };
 //
-const routes:RouteConfigExt = {{{routes}}}
+const routes:RouteConfigExt = {{{Routes}}}
 
 //
 export default routes;

@@ -1,5 +1,5 @@
 # vite-render-routes
-vite 路由处理，支持vue和react路由配置。
+vite 路由，多语言处理，支持vue和react路由配置。
 
 该插件，会在src目录下生产.wo目录，保存编译之后的route.config.ts文件
 
@@ -33,6 +33,16 @@ src/
         one/
           index.tsx
           index.less
+  locales/
+    en-US/
+      ...
+    zh-CN/
+      ...
+    zh-TW/
+      ...
+    en-US.ts
+    zh-CN.ts
+    zh-TW.ts        
 index.html
 vite.config.ts              
 ```
@@ -63,6 +73,40 @@ const routes = [{
   }]
 }]
 ```
+
+### locale配置
+locales/zh-CN.ts
+```
+import component from './zh-CN/component';
+import globalHeader from './zh-CN/globalHeader';
+import menu from './zh-CN/menu';
+// 其他引入
+
+export default {
+  'navBar.lang': '语言',
+  'layout.user.link.help': '帮助',
+  'layout.user.link.privacy': '隐私',
+  'layout.user.link.terms': '条款',
+  'app.preview.down.block': '下载此页面到本地项目',
+  'app.welcome.link.fetch-blocks': '获取全部区块',
+  'app.welcome.link.block-list': '基于 block 开发，快速构建标准页面',
+  ...globalHeader,
+  ...menu,
+  ...component
+};
+```
+locales/zh-CN/menu.ts
+```
+import menuBase from './menu.base'
+
+export default {
+  ...menuBase,
+  'menu.welcome': '欢迎',
+  'menu.home': '首页',
+  // ...
+};
+```
+
 ### React配置：
 
 vite.config.ts
@@ -74,7 +118,14 @@ export default defineConfig({
   plugins: [
     renderRoutes({
       routes,
-      suffix:'.tsx'
+      suffix:'.tsx',
+      locale:true,
+      /*locale: {
+        // default zh-CN
+        default: 'zh-CN',
+        antd: true,
+        // baseNavigator: true,
+      },*/
     })
   ]
 })
@@ -147,9 +198,15 @@ react需安装依赖：
 ```
 yarn add react-dom react-router-dom react-router-config
 ```
+```
+yarn add react-intl
+```
 vue需安装依赖：
 ```
 yarn add vue-router 
+```
+```
+yarn add vue-intl
 ```
 
 ## 相关说明

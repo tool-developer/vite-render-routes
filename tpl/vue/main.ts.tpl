@@ -2,18 +2,18 @@ import { createApp } from 'vue'
 import App from '../App.vue'
 import router from './router';
 
-{{#appFileExisted}}
+{{#AppFileExisted}}
 import appUse from './app';
-{{/appFileExisted}}
+{{/AppFileExisted}}
 
 const app = createApp(App);
 
 app.use(router);
 
-{{#appFileExisted}}
+{{#AppFileExisted}}
 appUse(app)
-{{/appFileExisted}}
+{{/AppFileExisted}}
 
-app.mount('#{{{mountRootId}}}')
+app.mount('#{{{MountRootId}}}')
 
 export default app;

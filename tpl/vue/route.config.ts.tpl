@@ -1,3 +1,3 @@
-const routes = {{{routes}}}
+const routes = {{{Routes}}}
 
 export default routes;
