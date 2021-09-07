@@ -1,6 +1,6 @@
 {
   "name": "@tool-developer/vite-render-routes",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "vite routes render handle",
   "main": "dist/index.js",
   "scripts": {

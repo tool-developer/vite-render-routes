@@ -120,6 +120,7 @@ export default defineConfig({
       routes,
       suffix:'.tsx',
       locale:true,
+      strictMode:false,// React.StrictMode模式下antd会出现findDOMNode错误
       /*locale: {
         // default zh-CN
         default: 'zh-CN',

@@ -6,10 +6,15 @@ import LocaleWraper from './locale';
 
 
 ReactDOM.render(
+  {{#ReactStrictMode}}
   <React.StrictMode>
+  {{/ReactStrictMode}}
     <LocaleWraper>
       <Router />
     </LocaleWraper>
-  </React.StrictMode>,
+  {{#ReactStrictMode}}  
+  </React.StrictMode>
+  {{/ReactStrictMode}}
+  ,
   document.getElementById('{{{MountRootId}}}')
 )

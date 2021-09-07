@@ -47,7 +47,9 @@ const generate = ({dir,type,name,data = {}}) => {
 const renderRoutes = (options) => {
   //
   const {routes} = options;
-  let {src,suffix,type,mountRootId,locale} = options;
+  let {src,suffix,type,mountRootId,locale,strictMode} = options;
+  // main.ts是否使用React.StrictMode
+  const ReactStrictMode = !!strictMode;
   //
   type = type || 'react';
   mountRootId = (mountRootId || 'app').replace(/^#/,'');// remove #
@@ -57,8 +59,7 @@ const renderRoutes = (options) => {
   src = src.replace(/\/$/,'');
   const woDir = src + '/.wo';
   const appFile = src + '/app.ts';
-  const cwd = process.cwd();
-  console.log(100,woDir)
+  // const cwd = process.cwd();
   //
   if(!fs.existsSync(woDir)){
     fs.mkdirSync(woDir);
@@ -74,7 +75,8 @@ const renderRoutes = (options) => {
       const data = {
         Routes:`${JSON.stringify(result,null,2)}`.replace(/("component":\s)"([^"]+)"/g,"$1$2"),
         AppFileExisted:fs.existsSync(appFile),
-        MountRootId:mountRootId
+        MountRootId:mountRootId,
+        ReactStrictMode
       };
       //
       if(locale){
