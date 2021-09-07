@@ -52,7 +52,7 @@ const renderRoutes = (options) => {
   const ReactStrictMode = !!strictMode;
   //
   type = type || 'react';
-  mountRootId = (mountRootId || 'app').replace(/^#/,'');// remove #
+  mountRootId = (mountRootId || 'root').replace(/^#/,'');// remove #
   suffix = handleSuffix(suffix);
   //
   src = src || `./src`;

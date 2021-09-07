@@ -156,7 +156,8 @@ export default defineConfig({
 | suffix	| 文件后缀，如果路由配置有该参数，不需要传递 | 
 | src	| 源文件目录，默认为./src | 
 | type	| 路由类型，默认react，目前仅支持vue和react | 
-| mountRootId	| index.html根节点id，默认为app | 
+| mountRootId	| index.html根节点id，默认为root | 
+| strictMode	| 是否使用React strictMode模式，默认false | 
 
 
 ## 调整入口引用
