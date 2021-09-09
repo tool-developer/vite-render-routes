@@ -10,7 +10,11 @@ const tplFileName = {
     main:'main.tsx',
     router:'router.tsx',
     renderRoutes:'renderRoutes.tsx',
-    locale:'locale.tsx'
+    locale:'locale.tsx',
+    access:'access.tsx',
+    context:'context.ts',
+    hooks:'hooks.ts',
+    provider:'provider.tsx'
   },
   vue:{
     routeConfig:'route.config.ts',

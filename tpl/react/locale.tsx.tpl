@@ -21,7 +21,7 @@ interface IntlShapeExt extends IntlShape {
 const momentLocaleKV:{[key:string]:string} ={{{MomentLocaleKV}}};
 
 //
-let localeInfo = {
+let localeInfo:any = {
   {{#LocaleFile}}
   messages:locales,
   {{/LocaleFile}}
