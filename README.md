@@ -168,12 +168,120 @@ index.html
 ## app.ts处理
 ### React app.ts
 ```
-const app = {};
+const app = {
+  // 退出
+  export const logout = ()=>{
+
+  }
+  // 权限规则处理
+  export const access = (currentUser:any)=>{
+    //
+    return {
+      adminRouteFilter: () => true, // 只有管理员可访问
+      normalRuleFilter:(key:string)=>{
+        //
+        return ['KEY1','KEY2'].includes(key);
+      }
+    }
+  }
+  // 获取用户信息
+  export async function fetchUserInfo():Promise<{}>{
+    //
+    return Promise.resolve({
+      name:"Luox"
+    })
+  }
+  // 页面初始数据
+  export async function getInitialState(): Promise<{
+    patchMenus?:(menuData:any,currentUser:any)=>any;
+    locale:{
+      [key:string]:any;
+    };
+  }> {
+    //
+    return {
+      patchMenus:(menuData:any,currentUser:any)=>{
+        //
+        return menuData;
+        // 无权限菜单不显示处理
+        //return menuData.filter((menu:any) => hasRoutes.includes(menu.path));
+      },
+      locale: {
+        src:"../locales/",
+        // default zh-CN
+        default: 'zh-CN',
+        antd: true,
+        // default true, when it is true, will use `navigator.language` overwrite default
+        baseNavigator: true,
+      },
+    }
+  }
+};
 
 //
 
 export default app;
 ```
+## 权限处理
+于antd pro权限处理存在一些差异，主要在于app.ts的配置做了调整。
+
+### 菜单权限
+```
+export default [{
+	path: '/',
+	component:"../layout/BasicLayout/index",
+	routes:[{
+		path: '/home',
+		name: 'Home',
+		component:'../pages/home',
+		access:'normalRouteFilter'
+	},{
+		path: '/about',
+		name: 'About',
+		component:'../pages/about',
+		access:'normalRouteFilter'
+	},{
+		path: '/form',
+		name: 'Form',
+		component:'../pages/form/index',
+		access:'normalRouteFilter'
+	},{
+		path:'/403',
+		name:'403',
+		component:'../pages/form/403/index'
+  }]
+},{
+	path:'/exception',
+	routes:[{
+		path:'/exception/403',
+		name:'403',
+		component:'../pages/exception/403/index'
+  }]
+}];
+```
+添加access属性，对应app.ts中的access配置。
+
+对于无权限时候显示，可以指定对应的403组件，未设置会使用最外层的，建议最外层配置一层/exception/403。
+
+### 组件权限
+```
+import { useAccess,Access } from '@@/access';
+
+export default Page(props){
+  const access = useAccess();
+
+  return <div>
+  
+    <Access accessible={access.normalRuleFilter?.('KEY1')} fallback={<div>无权限时显示</div>}>
+      <p>有权限，会显示</p>
+    </Access>
+  </div>
+}
+
+```
+`注意`:此处access.normalRuleFilter的写法与antd pro不同，由于access是通过异步获取fetchUserInfo接口后返回的。
+
+
 ### Vue app.ts
 可以通过app.ts注入更多app.use处理
 ```
