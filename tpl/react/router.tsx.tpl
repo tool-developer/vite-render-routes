@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter,Link} from 'react-router-dom';
-import renderRoutes from "./renderRoutes";
+import renderRoutes,{findExceptionComponent} from "./renderRoutes";
 //
 import routes from './route.config';
 //
@@ -9,6 +9,7 @@ import {
   // createHashHistory,
   // createMemoryHistory,
 } from 'history-with-query';
+import { useAccess } from './hooks';
 
 //
 export const history = createBrowserHistory({});
@@ -18,10 +19,18 @@ export {
 }
 //
 export default ()=>{
+	const access = useAccess();
+	// 全局403
+	const exceptionRoutes = (routes.find((route:any)=>route.path === '/exception') || {}).routes || [];
+	const exceptionComponent =  findExceptionComponent(exceptionRoutes);
 	//
 	return (	
 		<BrowserRouter>
-			{renderRoutes(routes as any)}
+			{renderRoutes({
+				routes,
+				access,
+				exceptionComponent
+			})}
 		</BrowserRouter>
 	)
 }
