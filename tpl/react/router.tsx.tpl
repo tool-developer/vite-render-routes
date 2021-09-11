@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter,Link} from 'react-router-dom';
+import {Router,Link} from 'react-router-dom';
 import renderRoutes,{findExceptionComponent} from "./renderRoutes";
 //
 import routes from './route.config';
@@ -25,12 +25,12 @@ export default ()=>{
 	const exceptionComponent =  findExceptionComponent(exceptionRoutes);
 	//
 	return (	
-		<BrowserRouter>
+		<Router history={history}>
 			{renderRoutes({
 				routes,
 				access,
 				exceptionComponent
 			})}
-		</BrowserRouter>
+		</Router>
 	)
 }
