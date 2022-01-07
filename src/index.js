@@ -61,7 +61,7 @@ const renderRoutes = (options) => {
   //
   src = src || `./src`;
   src = src.replace(/\/$/,'');
-  const woDir = src + '/.wo';
+  const woDir = src + '/.wo-vite';
   const appFile = src + '/app.ts';
   // const cwd = process.cwd();
   //
